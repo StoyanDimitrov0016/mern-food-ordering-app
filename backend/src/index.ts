@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import { v2 as cloudinary } from "cloudinary";
+
 import myUserRoute from "./routes/MyUserRoute";
 
 mongoose
@@ -12,6 +14,12 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const app = express();
 app.use(express.json());
