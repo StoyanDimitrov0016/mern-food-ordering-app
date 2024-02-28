@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { v2 as cloudinary } from "cloudinary";
 
 import myUserRoute from "./routes/MyUserRoute";
+import myRestaurantRoute from "./routes/MyRestaurantRoute";
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -30,6 +31,7 @@ app.get("/health", async (req: Request, res: Response) => {
 });
 
 app.use("/api/my/user", myUserRoute);
+app.use("/api/my/restaurant", myRestaurantRoute);
 
 app.listen(7000, () => {
   console.log("Server is listening on localhost: 7000");
